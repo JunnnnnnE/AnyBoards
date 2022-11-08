@@ -6,25 +6,30 @@ import com.ez.any.member.model.MemberModel;
 
 
 public interface MemberService {
+
+	// ì „ì²´ ì´ìš©ì ìˆ˜
+	public int getUserCount ();
 	
-	// ¸¶ÀÌÆäÀÌÁö
+	// ë§ˆì´í˜ì´ì§€
 	public List<MemberModel> myPageList(MemberModel memberModel) throws Exception;
 
-	// È¸¿øÅ»Åğ
+	// íšŒì›íƒˆí‡´
 	public void deleteMember(MemberModel memberModel);
 
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	public void insertMember(MemberModel memberModel);
 
-	// ¾ÆÀÌµğÁßº¹Ã¼Å©
+	// ì•„ì´ë””ì¤‘ë³µì²´í¬
 	public int checkId(String member_id);
 	
-	// ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	// ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 	public int checkNick(String member_nick);
 	
-	// È¸¿øÁ¤º¸ ¼öÁ¤
+	// íšŒì›ì •ë³´ ìˆ˜ì •
 	public void mypageModify(MemberModel memberModel);
 
 	public int passChk(MemberModel memberModel);
 
+	// ì´ë©”ì¼ ì¸ì¦
+	public int emailCheck(String member_email);
 }

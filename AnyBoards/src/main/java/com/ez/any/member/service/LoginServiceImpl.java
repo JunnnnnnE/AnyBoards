@@ -14,37 +14,33 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	@Override
 	public MemberModel login(MemberModel memberModel) throws Exception {
 		return memberMapper.login(memberModel);
 	}
 	
-	// ·Î±×ÀÎ Ã¼Å©
+	// ë¡œê·¸ì¸ ì²´í¬
 	@Override
 	public MemberModel loginCheck(MemberModel memberModel) throws Exception {
 		return memberMapper.loginCheck(memberModel);
 	}
 	
-	// ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì•„ì›ƒ
 	@Override
 	public MemberModel logout(MemberModel memberModel) throws Exception {
 		return memberMapper.logout(memberModel);
 	}
 	
-	// ¾ÆÀÌµğ Ã£±â
+	// ì•„ì´ë”” ì°¾ê¸°
 	@Override
 	public MemberModel findId(MemberModel memberModel) throws Exception {
 		return memberMapper.findId(memberModel);
 	}
 	
-	// ºñ¹Ğ¹øÈ£ Ã£±â
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	@Override
 	public String findPw(MemberModel memberModel) throws Exception {
 		return memberMapper.findPw(memberModel);
-	}
-
-
-
-	
+	}	
 }

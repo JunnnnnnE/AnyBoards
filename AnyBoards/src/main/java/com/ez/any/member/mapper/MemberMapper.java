@@ -10,38 +10,44 @@ import com.ez.any.member.model.MemberModel;
 @Mapper
 public interface MemberMapper {
 
-	// ·Î±×ÀÎ
+	// ì „ì²´ ì´ìš©ì ìˆ˜
+	public int getUserCount();
+	
+	// ë¡œê·¸ì¸
 	public MemberModel login(MemberModel memberModel) throws Exception;
 
-	// ·Î±×ÀÎ Ã¼Å©
+	// ë¡œê·¸ì¸ ì²´í¬
 	public MemberModel loginCheck(MemberModel memberModel) throws Exception;
 
-	// ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì•„ì›ƒ
 	public MemberModel logout(MemberModel memberModel) throws Exception;
 
-	// ¾ÆÀÌµğ Ã£±â
+	// ì•„ì´ë”” ì°¾ê¸°
 	public MemberModel findId(MemberModel memberModel) throws Exception;
 
-	// ºñ¹Ğ¹øÈ£ Ã£±â
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	public String findPw(MemberModel memberModel) throws Exception;
 
-	// ¸¶ÀÌÆäÀÌÁö
+	// ë§ˆì´í˜ì´ì§€
 	public List<MemberModel> myPageList(MemberModel memberModel) throws Exception;
 
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	void insertMember(MemberModel memberModel);
 
-	// ¾ÆÀÌµğ Áßº¹Ã¼Å©
+	// ì•„ì´ë”” ì¤‘ë³µì²´í¬
 	int checkId(String member_id);
 
-	// ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	// ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 	int checkNick(String member_nick);
 
-	// È¸¿ø Å»Åğ
+	// íšŒì› íƒˆí‡´
 	public void deleteMember(MemberModel memberModel);
 
-	// ³»Á¤º¸ ¼öÁ¤
+	// ë‚´ì •ë³´ ìˆ˜ì •
 	void mypageModify(MemberModel memberModel);
-	
+
 	public int passChk(MemberModel memberModel);
+	
+	// ì´ë©”ì¼ ì¸ì¦
+	public int emailCheck(String member_email);
 }

@@ -75,12 +75,6 @@
 								<br/><br/><br/><br/><br/><br/><br/>
 	                        </td>
 	                    </tr>
-	                    <tr class="checkbox">
-	                        <th>개발직군 유무</th>
-	                        <td>
-	                           <p>회원가입 후 회원정보 수정 시 인증이 가능합니다.</p>
-	                        </td>
-	                    </tr>
 	                    <tr class="captcha">
 	                        <th></th>
 	                        <td>

@@ -27,10 +27,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
-	// ·Î±× ¼³Á¤
+	// ë¡œê·¸ ì„¤ì •
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	@GetMapping("/login")
 	public String login() throws Exception {
 		return "member/loginForm";
@@ -40,7 +40,7 @@ public class MemberController {
 	public ModelAndView loginCheck(MemberModel memberModel, HttpSession session, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=utf-8");
 		ModelAndView mv = new ModelAndView();
-				
+										
 		MemberModel member = loginService.login(memberModel);
 		
 		System.out.println("==========================================");
@@ -50,17 +50,18 @@ public class MemberController {
 				
     	if(member != null) {
             session.setAttribute("member", member);
+            
     		mv.setViewName("redirect:/");
     	} else {
     		session.setAttribute("member", null);
-    		out.println("<script type='text/javascript'>alert('·Î±×ÀÎ Á¤º¸¸¦ È®ÀÎÇÒ ¼ö ¾ø½À´Ï´Ù. ´Ù½Ã ·Î±×ÀÎ ÇØÁÖ¼¼¿ä.')</script>");
+    		out.println("<script type='text/javascript'>alert('ë¡œê·¸ì¸ ì •ë³´ë¥¼ í™•ì¸í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.')</script>");
     		out.flush();
 	    	mv.setViewName("member/loginForm");
     	}    			
     	return mv;
 	}
 
-    // ·Î±×¾Æ¿ô
+    // ë¡œê·¸ì•„ì›ƒ
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception {
 		session.invalidate();

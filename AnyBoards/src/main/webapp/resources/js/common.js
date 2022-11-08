@@ -1,6 +1,6 @@
 // 로그인 화면으로 이동
 function goLogin() {
-	location.href = "/teen/member/login";
+	location.href = "/any/member/login";
 }
 
 // 로그아웃

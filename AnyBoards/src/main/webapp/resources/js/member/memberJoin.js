@@ -3,7 +3,7 @@ $(function() {
 $('#g-recaptcha').submit(function() {
 		var captcha = 1;
 		$.ajax({
-            url: '/teen/member/VerifyRecaptcha',
+            url: '/any/member/VerifyRecaptcha',
             dataType : 'json',
             type: 'post',
             data: {

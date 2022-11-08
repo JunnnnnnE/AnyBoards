@@ -44,13 +44,30 @@
 	<!-- 인터셉터 bean 등록 -->
 	<beans:bean id="AuthInterceptor"
 		class="com.ez.any.AuthInterceptor" />
+			
+	<!-- 로그인여부를 추적하는 인터셉터 추가 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*/**/modify" />
+			<mapping path="/*/**/boardWrite" />
+			<mapping path="/*/**/comment" />
+			<mapping path="/*/**/recomment" />
+			<mapping path="/admin/**" />
+			<mapping path="/*/**/myPage" />
+			<mapping path="/*/**/myBoard" />
+			<mapping path="/*/**/myComment" />
+			<mapping path="/*/**/modifyForm" />
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
 		
-		
+	</interceptors>
 	
+<!-- Interceptors -->
+
 	<!-- navermail설정 -->
 <beans:bean id="javaMailSenderImpl" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<beans:property name="host" value="smtp.naver.com"/>
-	<beans:property name="port" value="587"/>
+	<beans:property name="port" value="465"/>
 	<beans:property name="username" value="anyboard0328"/>
 	<beans:property name="password" value="wjddmswl1004!"/>
 	<!-- 보안연결 SSL과 관련된 설정 -->

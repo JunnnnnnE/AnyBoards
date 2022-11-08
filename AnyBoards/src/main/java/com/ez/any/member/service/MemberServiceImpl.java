@@ -11,24 +11,29 @@ import com.ez.any.member.model.MemberModel;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-	
 	@Autowired
 	private MemberMapper memberMapper;
+		
+
+	// ì „ì²´ ì´ìš©ì ìˆ˜
+	public int getUserCount () {
+		return memberMapper.getUserCount();
+	}
 	
-	// ¸¶ÀÌÆäÀÌÁö
+	// ë§ˆì´í˜ì´ì§€
 	@Override
 	public List<MemberModel> myPageList(MemberModel memberModel) throws Exception {
 		return memberMapper.myPageList(memberModel);
 	}
 
-	// È¸¿ø°¡ÀÔ
+	// íšŒì›ê°€ì…
 	@Override
 	public void insertMember(MemberModel memberModel) {
 		memberMapper.insertMember(memberModel);
 	
 	}
 	
-	// ¾ÆÀÌµğ Áßº¹Ã¼Å©
+	// ì•„ì´ë”” ì¤‘ë³µì²´í¬
 	@Override
 	public int checkId(String member_id) {
 		
@@ -37,7 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		return result; 
 	}
 	
-	// ´Ğ³×ÀÓ Áßº¹Ã¼Å©
+	// ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬
 	@Override
 	public int checkNick(String member_nick) {
 
@@ -46,25 +51,27 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	// È¸¿øÁ¤º¸ »èÁ¦
+	// íšŒì›ì •ë³´ ì‚­ì œ
 	@Override
 	public void deleteMember(MemberModel memberModel) {
 		memberMapper.deleteMember(memberModel);
 	}
 
-	// È¸¿øÁ¤º¸¼öÁ¤
+	// íšŒì›ì •ë³´ìˆ˜ì •
 	@Override
 	public void mypageModify(MemberModel memberModel){
 		
 		memberMapper.mypageModify(memberModel);
 	}
 
-	@Override 
-	public int passChk(MemberModel memberModel){
+	@Override public int passChk(MemberModel memberModel){
 	 
 		int result = memberMapper.passChk(memberModel); 
 	    return result; 
 	}
 
-	 
+	@Override
+	public int emailCheck(String member_email) {
+		return memberMapper.emailCheck(member_email);
+	}	 
 }

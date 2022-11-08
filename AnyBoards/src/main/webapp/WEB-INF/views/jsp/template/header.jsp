@@ -39,7 +39,8 @@
                     <li><a href="/any/member/logout" class="log" onClick="logout()">로그아웃</a></li>
                     <li><a href="/any/member/" class="log">마이페이지</a></li>
                     <li><a class="chat" >쪽지</a></li>
-                    <li><a href="#" onclick="msgList()" ><img src="/any/resources/images/icon/icon_alarm_n.svg"></a></li>
+                    <li><a href="#"><img src="/any/resources/images/icon/icon_alarm_n.svg"></a></li>
+                    <!-- <li><a href="#" onclick="msgList()" ><img src="/any/resources/images/icon/icon_alarm_n.svg"></a></li> -->
                   
                   <!--프로필 이미지 -->
                   	<c:forEach items="${icon}" var="profile">

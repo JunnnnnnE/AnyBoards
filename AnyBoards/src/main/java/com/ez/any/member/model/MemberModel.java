@@ -3,18 +3,18 @@ package com.ez.any.member.model;
 import java.util.Date;
 
 public class MemberModel {
-	private int member_no; // È¸¿ø °íÀ¯ ¹øÈ£
-	private String member_id; // È¸¿ø ¾ÆÀÌµğ
-	private String member_pw; // ºñ¹Ğ¹øÈ£
+	private int member_no; // íšŒì› ê³ ìœ  ë²ˆí˜¸
+	private String member_id; // íšŒì› ì•„ì´ë””
+	private String member_pw; // ë¹„ë°€ë²ˆí˜¸
 
 
-	private String member_name; // È¸¿ø ÀÌ¸§
-	private String member_email; // È¸¿ø ÀÌ¸ŞÀÏ
-	private String member_email_check; // È¸¿ø ÀÌ¸ŞÀÏ Ã¼Å©
-	private String member_nick; // È¸¿ø ´Ğ³×ÀÓ
-	private String member_admin; // °ü¸®ÀÚ È®ÀÎ
-	private Date member_date; // È¸¿ø°¡ÀÔ ³¯Â¥
-	private Integer member_point; // ¸â¹ö Æ÷ÀÎÆ®
+	private String member_name; // íšŒì› ì´ë¦„
+	private String member_email; // íšŒì› ì´ë©”ì¼
+	private String member_email_check; // íšŒì› ì´ë©”ì¼ ì²´í¬
+	private String member_nick; // íšŒì› ë‹‰ë„¤ì„
+	private String member_admin; // ê´€ë¦¬ì í™•ì¸
+	private Date member_date; // íšŒì›ê°€ì… ë‚ ì§œ
+	private Integer member_point; // ë©¤ë²„ í¬ì¸íŠ¸
 	
 	public int getMember_no() {
 		return member_no;

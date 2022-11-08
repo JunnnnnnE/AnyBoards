@@ -3,21 +3,21 @@ package com.ez.any.member.service;
 import com.ez.any.member.model.MemberModel;
 
 public interface LoginService {
-	
-	// ·Î±×ÀÎ
+
+	// ë¡œê·¸ì¸
 	public MemberModel login(MemberModel memberModel) throws Exception;
-	
-	// ·Î±×ÀÎ Ã¼Å©
+
+	// ë¡œê·¸ì¸ ì²´í¬
 	public MemberModel loginCheck(MemberModel memberModel) throws Exception;
-	
-	// ·Î±×¾Æ¿ô
+
+	// ë¡œê·¸ì•„ì›ƒ
 	public MemberModel logout(MemberModel memberModel) throws Exception;
 	
-	// ¾ÆÀÌµğ Ã£±â
+	// ì•„ì´ë”” ì°¾ê¸°
 	public MemberModel findId(MemberModel memberModel)throws Exception;
 	
-	// ºñ¹Ğ¹øÈ£ Ã£±â
+	// ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
 	public String findPw(MemberModel memberModel)throws Exception;
-
+	
 
 }

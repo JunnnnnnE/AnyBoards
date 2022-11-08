@@ -222,23 +222,9 @@ function checkValue() {
 
 }
 
-function checkOne(chk) {
-	var obj = document.getElementsByName("member_pro_check");
-	
-	for(var i = 0; i<obj.length; i++) {
-		if(obj[i] != chk) {
-			obj[i].checked = false;
-		}
-	}
-}
-
 // 마이페이지 화면으로 이동
 function goMyPage() {
 	location.href = "/any/member/";
-}
-//개발직군유무 인증 화면으로 이동
-function goMail() {
-	location.href = "/any/mail/";
 }
 
 var code = "";
@@ -278,7 +264,6 @@ $("#emailChk").click(function() {
 			$("#emailDoubleChk").val("true");
 			$("#member_emailChk").attr("disabled",true);
 			$("#emailDuplication").attr("value", true);
-			//$("#sm_email").attr("disabled",true);
 		}else{
 			$(".successEmailChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
 			$(".successEmailChk").css("color","red");

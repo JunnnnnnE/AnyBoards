@@ -34,7 +34,7 @@
 		<property name="configLocation"
 			value="classpath:/mybatis-config.xml"></property>
 	</bean>
-
+    
   	<mybatis-spring:scan base-package="com.ez.any/**/mapper"/>
 
 

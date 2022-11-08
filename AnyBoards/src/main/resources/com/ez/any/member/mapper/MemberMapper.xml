@@ -3,6 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ez.any.member.mapper.MemberMapper">
 	
+	<!-- 전체 이용자 수 -->
+	<select id="getUserCount" resultType="int">
+		SELECT COUNT(*) AS allMemberCount FROM MEMBER
+	</select>
 	<!-- 로그인 -->
 	<select id="login" resultType="com.ez.any.member.model.MemberModel">
 		SELECT *
@@ -35,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 			,MEMBER_PW
 			,MEMBER_NAME
 			,MEMBER_EMAIL
+			,MEMBER_EMAIL_CHECK
 			,MEMBER_NICK
 			,MEMBER_DATE
 			,MEMBER_POINT
@@ -45,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 			,#{member_pw}
 			,#{member_name}
 			,#{member_email}
+			,#{member_email_check}
 			,#{member_nick}
 			,sysdate
 			,0
@@ -76,6 +82,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 		SELECT COUNT(*) FROM MEMBER
 		WHERE MEMBER_NO = #{member_no}
 		AND MEMBER_PW = #{member_pw}
+	 </select>
+	 
+	 <!-- 암호화 pw 찾기 -->
+	 <select id="getUserPw" resultType="String" parameterType="com.ez.any.member.model.MemberModel">
+	 SELECT MEMBER_PW FROM MEMBER
+	 WHERE MEMBER_ID =  #{member_id}
 	 </select>
 	 
 	 <!-- 이메일 중복체크 -->
