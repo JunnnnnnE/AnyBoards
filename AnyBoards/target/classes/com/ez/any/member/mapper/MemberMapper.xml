@@ -3,10 +3,6 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ez.any.member.mapper.MemberMapper">
 	
-	<!-- 전체 이용자 수 -->
-	<select id="getUserCount" resultType="int">
-		SELECT COUNT(*) AS allMemberCount FROM MEMBER
-	</select>
 	<!-- 로그인 -->
 	<select id="login" resultType="com.ez.any.member.model.MemberModel">
 		SELECT *

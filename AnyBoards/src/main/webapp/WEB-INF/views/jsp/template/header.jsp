@@ -11,9 +11,9 @@
         <nav id="header_nav">
             <ul>
                 <li><a href="/any">Home</a></li>
-                <li><a href="/any/board?board_group_no=1">Community</a></li>
-                <li><a href="/any/board?board_group_no=2">Q&amp;A</a></li>
-                <li><a href="/any/board/notice">Notice</a></li>
+                <li><a href="/any/board">Community</a></li>
+                <li><a href="#">Q&amp;A</a></li>
+                <li><a href="#">Notice</a></li>
             </ul>
         </nav>
         

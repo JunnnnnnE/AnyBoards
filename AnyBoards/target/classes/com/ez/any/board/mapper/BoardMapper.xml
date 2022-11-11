@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ez.any.board.mapper.BoardMapper">
+	
+	<!-- 전체 이용자 수 -->
+	<select id="getUserCount" resultType="int">
+		SELECT COUNT(*) AS allMemberCount FROM MEMBER
+	</select>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="getBoardCount" resultType="int"> 
+		SELECT COUNT(*) AS allBoardCount FROM BOARD B
+		INNER JOIN MEMBER M
+		ON B.MEMBER_NO = M.MEMBER_NO
+	</select>
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="com.ez.any.board.mapper.BoardMapper" useGeneratedKeys="true" keyProperty="board_no" >
+	<selectKey keyProperty="board_no" resultType="int" order="BEFORE" >
+		SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+	</selectKey>
+	<![CDATA[
+	INSERT INTO BOARD(
+	 BOARD_NO
+	,MEMBER_NO
+	,BOARD_TITLE
+	,BOARD_DATE
+	,BOARD_CONTENT
+	,BOARD_HIT_COUNT
+	,BOARD_LIKE_COUNT
+	)
+	VALUES(
+	 #{board_no}
+	,#{member_no}
+	,#{board_title}
+	,SYSDATE
+	,#{board_content}
+	,0
+	,0
+	)
+]]>
+	</insert>
+	
+<select id ="boardList" resultType="com.ez.any.board.model.BoardModel" parameterType="com.ez.any.board.model.BoardParam">    
+	SELECT * FROM BOARD 
+	INNER JOIN MEMBER 
+    ON BOARD.member_no = MEMBER.member_no
+    where board.board_no between #{start} and #{end}
+    order by board.board_no DESC
+</select>
+	
+	
+</mapper>

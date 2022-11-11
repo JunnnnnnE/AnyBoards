@@ -6,9 +6,6 @@ import com.ez.any.member.model.MemberModel;
 
 
 public interface MemberService {
-
-	// 전체 이용자 수
-	public int getUserCount ();
 	
 	// 마이페이지
 	public List<MemberModel> myPageList(MemberModel memberModel) throws Exception;

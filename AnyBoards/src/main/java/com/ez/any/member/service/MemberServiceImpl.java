@@ -15,10 +15,6 @@ public class MemberServiceImpl implements MemberService {
 	private MemberMapper memberMapper;
 		
 
-	// 전체 이용자 수
-	public int getUserCount () {
-		return memberMapper.getUserCount();
-	}
 	
 	// 마이페이지
 	@Override
