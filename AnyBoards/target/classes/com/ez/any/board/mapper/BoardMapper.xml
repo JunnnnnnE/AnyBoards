@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ez.any.board.mapper.BoardMapper">
+	
+	<!-- 전체 이용자 수 -->
+	<select id="getUserCount" resultType="int">
+		SELECT COUNT(*) AS allMemberCount FROM MEMBER
+	</select>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="getBoardCount" resultType="int"> 
+		SELECT COUNT(*) AS allBoardCount FROM BOARD B
+		INNER JOIN MEMBER M
+		ON B.MEMBER_NO = M.MEMBER_NO
+		
+		<if test='member_no != 0'>
+		AND B.MEMBER_NO = #{member_no}
+ 		</if>
+	</select>
+	<!-- 게시글 작성 -->
+	<insert id="insertBoard" parameterType="com.ez.any.board.mapper.BoardMapper" useGeneratedKeys="true" keyProperty="board_no" >
+	<selectKey keyProperty="board_no" resultType="int" order="BEFORE" >
+		SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+	</selectKey>
+	<![CDATA[
+	INSERT INTO BOARD(
+	 BOARD_NO
+	,MEMBER_NO
+	,BOARD_TITLE
+	,BOARD_DATE
+	,BOARD_CONTENT
+	,BOARD_HIT_COUNT
+	,BOARD_LIKE_COUNT
+	,BOARD_FILE_CHECK
+	)
+	VALUES(
+	 #{board_no}
+	,#{member_no}
+	,#{board_title}
+	,SYSDATE
+	,#{board_content}
+	,0
+	,0
+	,'N'
+	)
+]]>
+	</insert>
+	
+	
+	<!-- 파일 유무에 따른 체크 업데이트 -->
+	<update id="fileCk" parameterType="com.ez.any.board.mapper.BoardMapper" >
+		UPDATE BOARD SET
+		BOARD_FILE_CHECK = 'Y'
+		WHERE BOARD_NO = #{board_no}
+	</update>
+	
+	<!-- 첨부파일 업로드 -->
+	<insert id="insertFile" parameterType="hashMap">
+	 INSERT INTO BFILE(
+	 FILE_NO
+	,BOARD_NO
+	,ORG_FILE_NAME
+	,STORED_FILE_NAME
+	,FILE_SIZE
+	,FILE_DATE
+	)
+	VALUES(
+	 SEQ_FILE_NO.NEXTVAL
+	,#{BOARD_NO}
+	,#{ORG_FILE_NAME}
+	,#{STORED_FILE_NAME}
+	,#{FILE_SIZE}
+	,#{FILE_DATE} 
+	)
+	
+	</insert>
+	
+	<!-- 첨부파일 다운로드 -->
+	<select id="downFile" parameterType="hashMap" resultType="hashMap">
+	<![CDATA[ 
+	SELECT 
+	 STORED_FILE_NAME
+	,ORG_FILE_NAME
+	FROM BFILE
+	WHERE FILE_NO = #{FILE_NO}
+	]]>
+	</select>
+	
+	<!-- 첨부파일 조회 -->
+	<select id="selectFile" parameterType="int" resultType="hashMap" >
+	<![CDATA[ 
+	SELECT 
+	 FILE_NO
+	,ORG_FILE_NAME
+	,ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+	FROM BFILE
+	WHERE BOARD_NO = #{board_no}
+	ORDER BY FILE_NO ASC
+	]]>
+	</select>
+		
+	<select id ="boardList" resultType="com.ez.any.board.model.BoardModel" parameterType="com.ez.any.board.model.BoardParam">    
+		SELECT * FROM BOARD 
+		INNER JOIN MEMBER 
+	    ON BOARD.MEMBER_NO = MEMBER.MEMBER_NO
+	    WHERE BOARD.BOARD_NO BETWEEN #{start} and #{end}
+	    order by board.board_no DESC
+	</select>
+	
+	<select id ="selectBoardDetail" resultType="com.ez.any.board.model.BoardModel" parameterType="com.ez.any.board.model.BoardParam">    
+		SELECT
+		B.BOARD_NO AS BOARD_NO
+		,B.BOARD_CONTENT AS BOARD_CONTENT
+		,B.BOARD_TITLE AS BOARD_TITLE
+		,B.BOARD_DATE AS BOARD_DATE
+		,B.BOARD_HIT_COUNT AS BOARD_HIT_COUNT
+		,B.BOARD_LIKE_COUNT AS BOARD_LIKE_COUNT
+		,B.BOARD_FILE_CHECK AS BOARD_FILE_CHECK
+		,M.MEMBER_NICK AS MEMBER_NICK
+		,M.MEMBER_NO AS MEMBER_NO
+		,M.MEMBER_ADMIN AS MEMBER_ADMIN
+		
+		FROM BOARD B 
+		INNER JOIN MEMBER M
+		ON B.MEMBER_NO = M.MEMBER_NO
+		
+		WHERE B.BOARD_NO = #{board_no}
+		
+		GROUP BY B.BOARD_NO
+		,B.BOARD_CONTENT
+		,B.BOARD_TITLE
+		,B.BOARD_DATE
+		,B.BOARD_HIT_COUNT
+		,B.BOARD_LIKE_COUNT
+		,B.BOARD_FILE_CHECK
+		,M.MEMBER_NICK
+		,M.MEMBER_NO
+		,M.MEMBER_ADMIN
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id ="deleteBoard" parameterType="int">
+		DELETE FROM BOARD
+		WHERE BOARD.BOARD_NO = #{board_no}
+	</delete>
+	
+	<!-- 조회수 증가 -->
+	<update id = "hitCount" parameterType="int">
+		update Board set board_hit_count = board_hit_count + 1 where board_no = #{board_no}	
+	</update>
+	
+	
+	
+	
+	
+</mapper>
